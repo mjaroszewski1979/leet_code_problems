@@ -11,20 +11,13 @@ Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
 '''
 
-class Solution(object):
 
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        if type(target) != int:
-            return 'Target must be an integer!'
-        elif len(set(nums)) < 2:
-            return 'Nums must contain at least two different integers!'
-        else:
-            for num1 in nums:
-                for num2 in nums:
-                    if num1 + num2 == target:
-                        return [nums.index(num1), nums.index(num2)]
+
+def twoSum(nums, target):
+    if type(target) != int:
+        return 'Target must be an integer!'
+    else:
+        for x in range(len(nums)):
+            for y in range(len(nums)):
+                if x is not y and nums[x] + nums[y] == target:
+                    return [x,y]
