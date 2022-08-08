@@ -19,36 +19,14 @@ C can be placed before D (500) and M (1000) to make 400 and 900.
 Given a roman numeral, convert it to an integer.
 '''
 
-def romanToInt(numeral):
-        """
-        :type numeral: str
-        :rtype: int
-        """
-        roman_nums_reg = {
-            'I' : 1,
-            'V' : 5,
-            'X' : 10,
-            'L' : 50,
-            'C' : 100,
-            'D' : 500,
-            'M' : 1000
-        }
-        roman_nums_dbl = {
-            'IV' : 4,
-            'IX' : 9,
-            'XL' : 40,
-            'XC' : 90,
-            'CD' : 400,
-            'CM' : 900
-        }
-        
-        if type(numeral) != str:
-            return 'Sorry, nueral must be a string!'
-        else:
-            for x in roman_nums_reg:
+roman = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
 
-                result = []
-                if x in numeral:
-                    result.append(roman_nums_reg[x])
-
-                return result
+def romanToInt(S: str) -> int:
+    summ= 0
+    for i in range(len(S)-1,-1,-1):
+        num = roman[S[i]]
+        if 3*num < summ: 
+            summ = summ-num
+        else: 
+            summ = summ+num
+    return summ
