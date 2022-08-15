@@ -14,11 +14,16 @@ Output: ""
 Explanation: There is no common prefix among the input strings.
 '''
 
-words = ["flower","flow","flight"]
-min_word = len(min(words, key=len))
-first_word = words[0]
-rest_words = words[1:]
-result = ''
-for x in range(min_word):
-    for y in rest_words:
-        print(y[x])
+def longestCommonPrefix(words):
+    """
+    :type strs: List[str]
+    :rtype: str
+    """
+    result = ''
+    for num in range(len(words[0])):
+        for word in words:
+            if num == len(word) or word[num] != words[0][num]:
+                return result
+
+        result += words[0][num]
+    return result
