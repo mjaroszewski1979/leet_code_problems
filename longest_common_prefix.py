@@ -16,7 +16,7 @@ Explanation: There is no common prefix among the input strings.
 
 def longestCommonPrefix(words):
     """
-    :type strs: List[str]
+    :type words: List[str]
     :rtype: str
     """
     result = ''
