@@ -22,7 +22,6 @@ Output: 6
 Explanation: The last word is "joyboy" with length 6.
 
 '''
-import string
 
 class Solution(object):
     def lengthOfLastWord(self, s):
@@ -30,13 +29,14 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        while s[-1] in string.whitespace:
+        space = ' '
+        while s[-1] == space:
             s = s.rstrip(s[-1])
-        for item in s:
-            if item not in string.whitespace:
-                return len(s)
-            else:
-                idx = s.rindex(item)
+
+        if space not in s:
+            return len(s)
+        else:
+            idx = s.rindex(space)
         start = idx + 1
         result = s[start:]
         return len(result)
