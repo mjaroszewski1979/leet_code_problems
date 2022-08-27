@@ -28,3 +28,18 @@ Incrementing by one gives 9 + 1 = 10.
 Thus, the result should be [1,0].
 
 '''
+
+class Solution(object):
+    def plusOne(self, digits):
+        """
+        :type digits: List[int]
+        :rtype: List[int]
+        """
+        if digits[-1] != 9:
+            digits[-1] += 1
+            return digits
+        else:
+            data = int("".join(map(str, digits)))
+            data += 1
+            result = list(map(int, str(data)))
+            return result
