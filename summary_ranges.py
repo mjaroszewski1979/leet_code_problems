@@ -30,3 +30,35 @@ Explanation: The ranges are:
 [8,9] --> "8->9"
 
 '''
+
+class Solution(object):
+    def summaryRanges(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[str]
+        """
+        if not nums:
+            return []
+        start = nums[0]
+        current = nums[0]
+        end = None
+        output = []
+        
+        for num in nums[1:]:
+            current += 1
+            if num == current:
+                end = num
+            else:
+                if not end:
+                    output.append(str(start))
+                else:
+                    output.append(str(start) + '->' + str(end))
+                start = num
+                current = num
+                end = None
+        if not end:
+            output.append(str(start))
+        else:
+            output.append(str(start) + '->' + str(end))
+            
+        return output
