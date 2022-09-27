@@ -9,13 +9,15 @@ Given the root of a binary tree, check whether it is a mirror of itself (i.e., s
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
+
+
+class SolutionRecursive(object):
     def isSymmetric(self, root):
         """
         :type root: TreeNode
         :rtype: bool
         """
-        '''def isMirror(left,right):
+        def isMirror(left,right):
             if left == None and right == None:
                 return True
             elif left == None or right == None:
@@ -23,12 +25,27 @@ class Solution(object):
             else:
                 return left.val == right.val and isMirror(left.left, right.right) and isMirror(left.right,right.left)
         
-        return isMirror(root, root)'''
+        return isMirror(root, root)
+
+class SolutionIterative(object):
+    def isSymmetric(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+
         
         if root is None:
             return True
         
+        if (not root.left and not root.right):
+            return True
+        
+        if (not root.left or not root.right):
+            return False
+        
         stack = []
+        
         if root.left and root.right:
             stack.append(root.left)
             stack.append(root.right)
