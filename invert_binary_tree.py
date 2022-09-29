@@ -25,7 +25,7 @@ Output: []
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
+class SolutionRecursive(object):
     def invertTree(self, root):
         """
         :type root: TreeNode
@@ -43,4 +43,30 @@ class Solution(object):
         self.invertTree(root.left)
         self.invertTree(root.right)
         
+        return root
+
+import collections
+
+class SolutionIterative(object):
+    def invertTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        q = collections.deque([root])
+        
+        while len(q):
+            
+            current = q.popleft()
+            
+            if current is None:
+                continue
+                
+            temp = current.left
+            current.left = current.right
+            current.right = temp
+            
+            q.append(current.left)
+            q.append(current.right)
+            
         return root
