@@ -70,3 +70,27 @@ class SolutionIterative(object):
             q.append(current.right)
             
         return root
+
+class SolutionIterative2(object):
+    def invertTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: TreeNode
+        """
+        
+        stack = [root]
+        
+        while stack:
+            curr = stack.pop()
+            
+            if curr is not None:
+
+
+                temp = curr.left
+                curr.left = curr.right
+                curr.right = temp
+
+                stack.append(curr.left)
+                stack.append(curr.right)
+            
+        return root
