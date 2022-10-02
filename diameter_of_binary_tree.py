@@ -13,7 +13,7 @@ The length of a path between two nodes is represented by the number of edges bet
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
+class Solution_1(object):
     def diameterOfBinaryTree(self, root):
         """
         :type root: TreeNode
@@ -37,3 +37,26 @@ class Solution(object):
             if root is None:
                 return 0
             return 1 + max(self.height(root.left), self.height(root.right))
+
+class Solution_2(object):
+    def diameterOfBinaryTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.result = 0
+        
+        def height(node):
+            if node is None:
+                return 0
+            
+            left_height = height(node.left)
+            right_height = height(node.right)
+            
+            self.result = max(self.result, (left_height + right_height))
+            
+            return max(left_height, right_height) + 1
+        
+        height(root)
+        
+        return self.result
