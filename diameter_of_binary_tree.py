@@ -60,3 +60,24 @@ class Solution_2(object):
         height(root)
         
         return self.result
+
+class Solution_3(object):
+    def diameterOfBinaryTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        self.result = 0
+        
+        def height(root):
+            if not root:
+                return -1
+            left = height(root.left)
+            right = height(root.right)
+            self.result = max(self.result, (left + right + 2))
+            
+            return max(left, right) + 1
+        
+        height(root)
+        
+        return self.result
