@@ -40,3 +40,20 @@ class SolutionIterative(object):
             right = temp
             
         return left
+
+class SolutionRecursive(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if not head:
+            return None
+        
+        new_head = head
+        if head.next:
+            new_head = self.reverseList(head.next)
+            head.next.next = head
+        head.next = None
+        
+        return new_head
