@@ -41,7 +41,7 @@ class SolutionIterative(object):
             
         return left
 
-class SolutionRecursive(object):
+class SolutionRecursive_1(object):
     def reverseList(self, head):
         """
         :type head: ListNode
@@ -57,3 +57,37 @@ class SolutionRecursive(object):
         head.next = None
         
         return new_head
+
+class SolutionRecursive_2(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        def recursive(previous, current):
+            if not current:
+                return previous
+            tail = recursive(current, current.next)
+            current.next = previous
+            
+            return tail
+        
+        return recursive(None, head)
+
+class SolutionRecursive_3(object):
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        def recursive(current, previous):
+            if not current:
+                return previous
+            temp = current.next
+            current.next = previous
+            previous = current
+            current = temp
+            return recursive(current, previous)
+            
+        
+        return recursive(current=head, previous=None)
