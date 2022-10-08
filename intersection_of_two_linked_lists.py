@@ -11,7 +11,7 @@ Note that the linked lists must retain their original structure after the functi
 #         self.val = x
 #         self.next = None
 
-class Solution(object):
+class Solution_1(object):
     def getIntersectionNode(self, headA, headB):
         """
         :type head1, head1: ListNode
@@ -29,3 +29,28 @@ class Solution(object):
             headB = headB.next
             
         return None
+
+class Solution_2(object):
+    def getIntersectionNode(self, headA, headB):
+        """
+        :type head1, head1: ListNode
+        :rtype: ListNode
+        """
+        if not headA or not headB:
+            return None
+        
+        pointer_1 = headA
+        pointer_2 = headB
+        
+        while pointer_1 != pointer_2:
+            if pointer_1:
+                pointer_1 = pointer_1.next
+            else:
+                pointer_1 = headB
+                
+            if pointer_2:
+                pointer_2 = pointer_2.next
+            else:
+                pointer_2 = headA
+                
+        return pointer_1
