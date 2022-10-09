@@ -41,3 +41,34 @@ class Solution(object):
             res.append(head.val)
             
         return res == res[::-1]
+
+class Solution_2(object):
+    def isPalindrome(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
+        fast = head
+        slow = head
+        
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+            
+        prev = None
+        while slow:
+            temp = slow.next
+            slow.next = prev
+            prev = slow
+            slow = temp
+            
+        left = head
+        right = prev
+        
+        while right:
+            if left.val != right.val:
+                return False
+            left = left.next
+            right = right.next
+            
+        return True
