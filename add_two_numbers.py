@@ -53,3 +53,35 @@ class Solution(object):
             l2 = l2.next if l2 else None
             
         return temp.next
+
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        num_1 = ''
+        num_2 = ''
+        
+        while l1:
+            num_1 = str(l1.val) + num_1
+            l1 = l1.next
+            
+        while l2:
+            num_2 = str(l2.val) + num_2
+            l2 = l2.next
+            
+        if not num_1: num_1 = '0'
+        if not num_2: num_2 = '0'
+            
+        result = int(num_1) + int(num_2)
+        
+        dummy = current = ListNode()
+        
+        for i in reversed(str(result)):
+            current.next = ListNode(int(i))
+            current = current.next
+            
+        return dummy.next
+            
