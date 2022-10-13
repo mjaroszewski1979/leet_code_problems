@@ -15,7 +15,7 @@ Output: "bb"
 
 '''
 
-class Solution(object):
+class Solution_1(object):
     def longestPalindrome(self, s):
         """
         :type s: str
@@ -43,3 +43,18 @@ class Solution(object):
                 right += 1
             
         return res
+
+
+class Solution_2(object):
+    def longestPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        def get_palindrome(s):
+            return (s == s[::-1])
+        
+        for length in range(len(s), 0, -1):
+            for start_index in range(0, len(s)+1-length):
+                if get_palindrome(s[start_index:(start_index+length)]):
+                    return s[start_index:(start_index+length)]
