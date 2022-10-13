@@ -182,4 +182,64 @@ class Solution_4(object):
             carry = carry//10
             
         return result.next
+
+class Solution_5(object):
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        result = current = ListNode()
+        carry = 0
+        
+        while l1 or l2 or carry:
+            num_1 = l1.val if l1 else 0
+            num_2 = l2.val if l2 else 0
+            
+            temp = num_1 + num_2 + carry
+            
+            num = temp%10
+            carry = temp//10
+            
+            current.next = ListNode(num)
+            
+            current = current.next
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
+            
+        return result.next
+
+class Solution_6(object):
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        result = current = ListNode()
+        carry = 0
+        
+        while l1 or l2 or carry:
+            
+            if (not l1 or not l2) and not carry:
+                current.next = l1 or l2
+                break 
+                
+            num_1 = l1.val if l1 else 0
+            num_2 = l2.val if l2 else 0
+            
+            temp = num_1 + num_2 + carry
+            
+            num = temp%10
+            carry = temp//10
+            
+            current.next = ListNode(num)
+            
+            current = current.next
+            l1 = l1.next if l1 else None
+            l2 = l2.next if l2 else None
+            
+        return result.next
+            
             
