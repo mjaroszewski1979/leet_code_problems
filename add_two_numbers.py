@@ -119,4 +119,43 @@ class Solution_3(object):
             current.next = ListNode(1)
                 
         return dummy.next
+
+class Solution_4(object):
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        result = ListNode(val = (l1.val + l2.val)%10)
+        carry_over = (l1.val + l2.val) // 10
+        current = result
+        
+        while(l1.next and l2.next):
+            
+            l1 = l1.next
+            l2 = l2.next
+            
+            current.next = ListNode(val = (carry_over + l1.val + l2.val)%10)
+            carry_over = (carry_over + l1.val + l2.val) // 10
+            current = current.next
+            
+        while(l1.next):
+            
+            l1 = l1.next
+            current.next = ListNode(val = (carry_over + l1.val)%10)
+            carry_over = (carry_over + l1.val) // 10
+            current = current.next
+            
+        while(l2.next):
+            
+            l2 = l2.next
+            current.next = ListNode(val = (carry_over + l2.val)%10)
+            carry_over = (carry_over + l2.val) // 10
+            current = current.next
+            
+        if carry_over > 0:
+            current.next = ListNode(val = 1)
+            
+        return(result)
             
