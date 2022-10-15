@@ -91,3 +91,20 @@ class Solution_2(object):
                 end -= 1
                 
         return area
+        
+# BRUTE FORCE
+class Solution_3(object):
+    def maxArea(self, height):
+        """
+        :type height: List[int]
+        :rtype: int
+        """
+        start = 0
+        end = 1 
+        area = 0
+        
+        for start in range(len(height)):
+            for end in range(start+1, len(height)):
+                area = max(area, (end-start)*min(height[start], height[end]))
+                
+        return area
