@@ -13,11 +13,13 @@ Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
 
 
-def twoSum(nums, target):
-    if type(target) != int:
-        return 'Target must be an integer!'
-    else:
-        for x in range(len(nums)):
-            for y in range(len(nums)):
-                if x is not y and nums[x] + nums[y] == target:
-                    return [x,y]
+class Solution(object):
+
+    def twoSum(self, nums, target):
+        result = {}
+        for index, num in enumerate(nums):
+            diff = target - num
+            if diff in result:
+                return [result[diff], index]
+            result[num] = index
+        return
