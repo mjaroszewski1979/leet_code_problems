@@ -13,7 +13,7 @@ Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
 
 
-class Solution(object):
+class Solution_1(object):
 
     def twoSum(self, nums, target):
         result = {}
@@ -22,4 +22,14 @@ class Solution(object):
             if diff in result:
                 return [result[diff], index]
             result[num] = index
+        return
+
+class Solution_2(object):
+
+    def twoSum(self, nums, target):
+        result = {}
+        for i in range(len(nums)):
+            if nums[i] in result:
+                return [result[nums[i]], i]
+            result[target - nums[i]] = i
         return
