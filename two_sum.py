@@ -33,3 +33,16 @@ class Solution_2(object):
                 return [result[nums[i]], i]
             result[target - nums[i]] = i
         return
+
+class Solution_3(object):
+
+    def twoSum(self, nums, target):
+        
+        temp = {}
+        
+        for index, num in enumerate(nums):
+            if num in temp:
+                return [temp[num], index]
+            temp[target - num] = index
+            
+        return []
