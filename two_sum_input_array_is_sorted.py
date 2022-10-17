@@ -27,7 +27,7 @@ Explanation: The sum of -1 and 0 is -1. Therefore index1 = 1, index2 = 2. We ret
 
 '''
 
-class Solution(object):
+class Solution_1(object):
     def twoSum(self, numbers, target):
         """
         :type numbers: List[int]
@@ -41,4 +41,26 @@ class Solution(object):
             if num in data:
                 return [data[num], index + 1]
             data[target - num] = index + 1
+        return []
+
+class Solution_2(object):
+    def twoSum(self, numbers, target):
+        """
+        :type numbers: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        
+        start = 0
+        end = len(numbers) - 1
+        
+        while start < end:
+            current_sum = numbers[start] + numbers[end]
+            if current_sum > target:
+                end -= 1
+            elif current_sum < target:
+                start += 1
+            else:
+                return [start + 1, end + 1]
+        
         return []
