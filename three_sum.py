@@ -28,7 +28,7 @@ Explanation: The only possible triplet sums up to 0.
 
 '''
 
-class Solution(object):
+class Solution_1(object):
     def threeSum(self, nums):
         """
         :type nums: List[int]
@@ -57,3 +57,81 @@ class Solution(object):
                         start += 1
                         
         return result
+
+class Solution_2(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if len(nums) < 3:
+            return []
+        
+        result = []
+        nums = sorted(nums)
+        
+        for i in range(0, len(nums) - 2):
+            
+            if nums[i] > 0:
+                break
+                
+            if nums[i] == nums[i-1] and i > 0:
+                continue
+            
+            
+            start = i + 1
+            end = len(nums) - 1
+            
+            while start < end:
+                
+                temp = nums[i] + nums[start] + nums[end]
+                
+                if temp == 0:
+                    result.append((nums[i], nums[start], nums[end]))
+                if temp <= 0:
+                    start += 1
+                    while (nums[start] == nums[start-1]) and start < end:
+                        start += 1
+                else:
+                    end -= 1
+                    
+        return result
+
+
+class Solution_3(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if len(nums) < 3:
+            return []
+        
+        result = []
+        nums = sorted(nums)
+        
+        for i in range(0, len(nums) - 2):
+            
+            if nums[i] > 0:
+                break
+                
+            if nums[i] == nums[i-1] and i > 0:
+                continue
+            
+            
+            start = i + 1
+            end = len(nums) - 1
+            
+            while start < end:
+                
+                temp = nums[i] + nums[start] + nums[end]
+                
+                if temp == 0:
+                    result.append((nums[i], nums[start], nums[end]))
+                    start += 1
+                elif temp < 0:
+                    start += 1
+                else:
+                    end -= 1
+                    
+        return list(set(result))
