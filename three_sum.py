@@ -135,3 +135,79 @@ class Solution_3(object):
                     end -= 1
                     
         return list(set(result))
+
+
+class Solution_4(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if len(nums) < 3:
+            return []
+        
+        result = []
+        nums = sorted(nums)
+        
+        for i in range(len(nums)):
+            
+            if nums[i] > 0:
+                break
+                
+            if nums[i] == nums[i-1] and i > 0:
+                continue
+            
+            
+            start = i + 1
+            end = len(nums) - 1
+            
+            while start < end:
+                
+                temp = nums[i] + nums[start] + nums[end]
+                
+                if temp == 0:
+                    result.append((nums[i], nums[start], nums[end]))
+                    while start < end and nums[start] == nums[start+1]:
+                        start += 1
+                    while start < end and nums[end] == nums[end-1]:
+                        end -= 1
+                    start += 1
+                    end -= 1
+                    
+                elif temp > 0:
+                    end -= 1
+                else:
+                    start += 1
+                    
+        return result
+
+class Solution_5(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        if len(nums) < 3:
+            return []
+        
+        result = set()
+        data = {}
+        nums = sorted(nums)
+        
+        for i in range(len(nums)):  
+            data[nums[i]] = i
+            
+        for i in range(len(nums)):
+
+            if i != 0 and nums[i] == nums[i-1]:
+                continue
+                
+            two_sum = -nums[i]
+            
+            for j in range(i+1, len(nums)):
+                target = two_sum - nums[j]
+                
+                if target in data and data[target] > j:
+                    result.add((-two_sum, nums[j], target))
+                    
+        return result
