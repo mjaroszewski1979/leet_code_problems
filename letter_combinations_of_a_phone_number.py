@@ -21,7 +21,7 @@ Output: ["a","b","c"]
 
 '''
 
-class Solution(object):
+class Solution_1(object):
     def letterCombinations(self, digits):
         """
         :type digits: str
@@ -55,3 +55,34 @@ class Solution(object):
             
         return result
                 
+class Solution_2(object):
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        
+        if not digits:
+            return []
+        
+        result = ['']
+        
+        data = {
+            '2' : 'abc',
+            '3' : 'def',
+            '4' : 'ghi',
+            '5' : 'jkl',
+            '6' : 'mno',
+            '7' : 'pqrs',
+            '8' : 'tuv',
+            '9' : 'wxyz'
+        }
+        
+        for digit in digits:
+            temp = []
+            for element in data[digit]:
+                for value in result:
+                    temp.append(value + element)
+            result = temp
+                
+        return result
