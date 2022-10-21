@@ -27,6 +27,9 @@ class Solution(object):
         :type digits: str
         :rtype: List[str]
         """
+        
+        result = []
+        
         data = {
             '2' : 'abc',
             '3' : 'def',
@@ -37,21 +40,18 @@ class Solution(object):
             '8' : 'tuv',
             '9' : 'wxyz'
         }
-        if digits == '':
-            return []
-        if digits == '1':
-            return []
-        if len(digits) == 1:
-            num = digits[0]
-            return data[num]
+
         
-        temp = ''
-        first = data[digits[0]]
-        for digit in digits[1:]:
-            temp = temp + data[digit]
+        def recursive(num, current_string):
+            if len(current_string) == len(digits):
+                result.append(current_string)
+                return
+        
+            for element in data[digits[num]]:
+                recursive(num + 1, current_string + element)
+                
+        if digits:
+            recursive(0, '')
             
-        result = []
-        for i in first:
-            for j in temp:
-                result.append(str(i+j))
         return result
+                
