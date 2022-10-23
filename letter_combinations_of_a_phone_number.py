@@ -116,3 +116,44 @@ class Solution_3(object):
             result = list(old + new for old in result for new in list(data[digit]))
             
         return result
+
+from collections import deque
+
+class Solution_4(object):
+    def letterCombinations(self, digits):
+        """
+        :type digits: str
+        :rtype: List[str]
+        """
+        
+        if not digits:
+            return []    
+        
+        data = {
+            '2' : 'abc',
+            '3' : 'def',
+            '4' : 'ghi',
+            '5' : 'jkl',
+            '6' : 'mno',
+            '7' : 'pqrs',
+            '8' : 'tuv',
+            '9' : 'wxyz'
+        }
+        
+        result = []
+        q = deque()
+        q.append("")
+        digits_len = len(digits)
+ 
+        while len(q) != 0:
+            stack = q.pop()
+
+            if len(stack) == digits_len:
+                result.append(stack)
+            else:
+
+                for value in data[digits[len(stack)]]:
+                    q.append(stack + value)
+
+
+        return result
