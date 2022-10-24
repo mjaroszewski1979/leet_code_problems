@@ -70,3 +70,52 @@ class Solution(object):
         right.next = right.next.next
         
         return dummy.next
+
+
+class Solution_3(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        dummy = ListNode(0, head)
+        left = dummy
+        right = head
+        
+        while n > 0 and right:
+            right = right.next
+            n -= 1
+            
+        while right:
+            right = right.next
+            left = left.next
+            
+        left.next = left.next.next
+        
+        
+        return dummy.next
+
+class Solution_4(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        
+        left = right = head
+        
+        for _ in range(n):
+            right = right.next
+            
+        if right is None:
+            return head.next
+        
+        while right.next:
+            left = left.next
+            right = right.next
+            
+        left.next = left.next.next
+        
+        return head
