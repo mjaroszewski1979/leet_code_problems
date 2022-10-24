@@ -21,13 +21,13 @@ Output: [1]
 '''
 
 # Definition for singly-linked list.
-# class ListNode(object):
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class ListNode(object):
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
 
-class Solution(object):
+class Solution_1(object):
     def removeNthFromEnd(self, head, n):
         """
         :type head: ListNode
@@ -49,3 +49,24 @@ class Solution(object):
         right.next = right.next.next
         
         return head
+
+class Solution(object):
+    def removeNthFromEnd(self, head, n):
+        """
+        :type head: ListNode
+        :type n: int
+        :rtype: ListNode
+        """
+        dummy = left = right = ListNode(0, next = head) 
+        
+        for _ in range(n):
+            left = left.next
+            
+        
+        while left.next:
+            left = left.next
+            right = right.next
+            
+        right.next = right.next.next
+        
+        return dummy.next
