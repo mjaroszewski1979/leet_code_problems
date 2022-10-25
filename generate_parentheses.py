@@ -14,7 +14,7 @@ Output: ["()"]
 
 '''
 
-class Solution(object):
+class Solution_1(object):
     def generateParenthesis(self, n):
         """
         :type n: int
@@ -37,4 +37,35 @@ class Solution(object):
                 
         recursive(n, n, 0, '')
         
+        return result
+
+from collections import deque
+
+class Solution_2(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+
+        
+        result = []
+        stack = deque()
+        
+        def recursive(left, right):
+            if left == right == n:
+                result.append(''.join(stack))
+                return
+            
+            if left < n:
+                stack.append('(')
+                recursive(left+1, right)
+                stack.pop()
+                
+            if right < left:
+                stack.append(')')
+                recursive(left, right+1)
+                stack.pop()
+                
+        recursive(0,0)
         return result
