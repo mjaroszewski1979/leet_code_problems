@@ -69,3 +69,26 @@ class Solution_2(object):
                 
         recursive(0,0)
         return result
+
+class Solution_3(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+
+        
+        result = []
+        
+        def recursive(left, right, temp, result):
+            if left == 0 and right == 0:
+                result. append(temp)
+                return
+            if left > 0:
+                recursive(left-1, right, temp+'(', result)
+            if right > left:
+                recursive(left, right-1, temp+')', result)
+                
+        recursive(n, n, '', result)
+        
+        return result
