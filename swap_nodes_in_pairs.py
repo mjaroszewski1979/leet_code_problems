@@ -24,7 +24,7 @@ class ListNode(object):
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-class Solution(object):
+class Solution_1(object):
     def swapPairs(self, head):
         """
         :type head: ListNode
@@ -46,5 +46,26 @@ class Solution(object):
             
             left = right
             right = temp_1
+            
+        return dummy.next
+
+class Solution_2(object):
+    def swapPairs(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        
+
+        dummy = curr = ListNode()
+        curr.next = head
+        
+        while curr.next and curr.next.next:
+            left = curr.next
+            right = curr.next.next
+            curr.next = right
+            left.next = right.next
+            right.next = left
+            curr = left
             
         return dummy.next
