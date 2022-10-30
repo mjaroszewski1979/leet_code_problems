@@ -69,3 +69,20 @@ class Solution_2(object):
             curr = left
             
         return dummy.next
+
+
+class Solution_3(object):
+    def swapPairs(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        
+
+        if head is None or head.next is None:
+            return head
+        else:
+            temp = head.next
+            head.next = self.swapPairs(temp.next)
+            temp.next = head
+            return temp
