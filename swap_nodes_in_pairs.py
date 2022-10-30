@@ -86,3 +86,22 @@ class Solution_3(object):
             head.next = self.swapPairs(temp.next)
             temp.next = head
             return temp
+
+class Solution_4(object):
+    def swapPairs(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        
+
+        prev = dummy = ListNode(0, head)
+        curr = head
+        
+        while curr and curr.next:
+            prev.next = curr.next
+            curr.next = curr.next.next
+            prev.next.next = curr
+            prev = curr
+            curr = curr.next
+        return dummy.next
