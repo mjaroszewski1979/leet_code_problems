@@ -21,7 +21,7 @@ Output: [1,2,3]
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution(object):
+class Solution_1(object):
     def deleteDuplicates(self, head):
         """
         :type head: ListNode
@@ -36,4 +36,20 @@ class Solution(object):
                 current.next = current.next.next
             current = current.next
             
+        return head
+
+
+class Solution_2(object):
+    def deleteDuplicates(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if not head or not head.next: return head
+        
+        head.next = self.deleteDuplicates(head.next)
+        
+        if head.next != None and head.next.val == head.val:
+            return head.next
+        
         return head
