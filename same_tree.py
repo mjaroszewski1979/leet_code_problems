@@ -29,7 +29,7 @@ Output: false
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
+class Solution_1(object):
     def isSameTree(self, p, q):
         """
         :type p: TreeNode
@@ -46,3 +46,18 @@ class Solution(object):
             return dfs(p.left, q.left) and dfs(p.right, q.right)
         
         return dfs(p,q)
+
+class Solution_2(object):
+    def isSameTree(self, p, q):
+        """
+        :type p: TreeNode
+        :type q: TreeNode
+        :rtype: bool
+        """
+        
+        if not p and not q:
+            return True
+        if (not p or not q) or (p.val != q.val):
+            return False
+        
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
