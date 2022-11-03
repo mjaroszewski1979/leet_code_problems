@@ -26,7 +26,7 @@ class TreeNode(object):
         self.left = left
         self.right = right
         
-class Solution(object):
+class Solution_1(object):
     def sortedArrayToBST(self, nums):
         """
         :type nums: List[int]
@@ -45,3 +45,21 @@ class Solution(object):
             return root
         
         return recursive(0, len(nums) - 1)
+
+
+class Solution_2(object):
+    def sortedArrayToBST(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: TreeNode
+        """
+        
+        if not nums:
+            return None
+        
+        middle = len(nums) // 2
+        root = TreeNode(nums[middle])
+        root.left = self.sortedArrayToBST(nums[:middle])
+        root.right = self.sortedArrayToBST(nums[middle+1:])
+        
+        return root
