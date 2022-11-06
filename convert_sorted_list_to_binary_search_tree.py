@@ -28,7 +28,7 @@ class TreeNode(object):
         self.left = left
         self.right = right
         
-class Solution(object):
+class Solution_1(object):
     def sortedListToBST(self, head):
         """
         :type head: Optional[ListNode]
@@ -53,3 +53,33 @@ class Solution(object):
             return root
         
         return recursive(temp)
+
+
+class Solution_2(object):
+    def sortedListToBST(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[TreeNode]
+        """
+        if not head: return None
+        
+        
+        length = 0
+        self.head = head
+        
+        while head:
+            length += 1
+            head = head.next
+            
+        def recursive(start, end):
+            if start > end:
+                return None
+            mid = (start + end) // 2
+            left = recursive(start, mid-1)
+            root = TreeNode(self.head.val)
+            self.head = self.head.next
+            root.left = left
+            root.right = recursive(mid+1, end)
+            return root
+        
+        return recursive(0, length -1)
