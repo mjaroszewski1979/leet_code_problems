@@ -26,7 +26,7 @@ Output: true
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
+class Solution_1(object):
     def isBalanced(self, root):
         """
         :type root: TreeNode
@@ -53,3 +53,25 @@ class Solution(object):
         h_right = height(root.right)
         
         return (abs(h_left - h_right) <= 1) and self.isBalanced(root.left) and self.isBalanced(root.right)
+
+class Solution_2(object):
+    def isBalanced(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        
+
+        
+        def recursive(root):
+            
+            if not root:
+                return [True, 0]
+            left = recursive(root.left)
+            right = recursive(root.right)
+            
+            result = left[0] and right[0] and abs(left[1] - right[1]) <= 1
+            
+            return [result, 1 + max(left[1], right[1])]
+        
+        return recursive(root)[0]
