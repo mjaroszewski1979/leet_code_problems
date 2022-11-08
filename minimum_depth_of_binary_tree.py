@@ -25,7 +25,7 @@ Output: 5
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
+class Solution_1(object):
     def minDepth(self, root):
         """
         :type root: TreeNode
@@ -43,3 +43,24 @@ class Solution(object):
             return 1 + self.minDepth(root.right)
         
         return 1 + min(self.minDepth(root.left), self.minDepth(root.right))
+
+from collections import deque
+
+class Solution_1(object):
+    def minDepth(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        if not root: return 0
+        
+        q = deque([(root, 1)])
+        
+        while q:
+            node, depth = q.popleft()
+            if not node.left and not node.right:
+                return depth
+            if node.left:
+                q.append((node.left, depth+1))
+            if node.right:
+                q.append((node.right, depth+1))
