@@ -67,3 +67,29 @@ class Solution_2(object):
             return targetSum == 0
         
         return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum)
+
+from collections import deque
+
+class Solution_3(object):
+    def hasPathSum(self, root, targetSum):
+        """
+        :type root: TreeNode
+        :type targetSum: int
+        :rtype: bool
+        """
+        if not root:
+            return False
+        
+        q = deque([(root, targetSum - root.val)])
+        
+        while q:
+            node, result = q.popleft()
+            
+            if not node.left and not node.right and result == 0:
+                return True
+            if node.left:
+                q.append((node.left, result - node.left.val))
+            if node.right:
+                q.append((node.right, result - node.right.val))
+                
+        return False
