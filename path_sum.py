@@ -34,7 +34,7 @@ Explanation: Since the tree is empty, there are no root-to-leaf paths.
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
+class Solution_1(object):
     def hasPathSum(self, root, targetSum):
         """
         :type root: TreeNode
@@ -50,3 +50,20 @@ class Solution(object):
             return (dfs(node.left, result) or dfs(node.right, result))
         
         return dfs(root, 0)
+
+class Solution_2(object):
+    def hasPathSum(self, root, targetSum):
+        """
+        :type root: TreeNode
+        :type targetSum: int
+        :rtype: bool
+        """
+        if not root:
+            return False
+        
+        targetSum = targetSum - root.val
+        
+        if not root.left and not root.right:
+            return targetSum == 0
+        
+        return self.hasPathSum(root.left, targetSum) or self.hasPathSum(root.right, targetSum)
