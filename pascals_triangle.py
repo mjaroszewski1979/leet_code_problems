@@ -59,3 +59,26 @@ class Solution_2(object):
             result.append(temp)
                 
         return result
+
+class Solution_3(object):
+    def generate(self, numRows):
+        """
+        :type numRows: int
+        :rtype: List[List[int]]
+        """
+
+        
+        result = [[] for i in range(numRows)]
+        
+        for i in range(numRows):
+            for j in range(i+1):
+                if j < i:
+                    if j == 0:
+                        result[i].append(1)
+                    else:
+                        result[i].append(result[i-1][j] + result[i-1][j-1])
+                        
+                elif i == j:
+                    result[i].append(1)
+                    
+        return result
