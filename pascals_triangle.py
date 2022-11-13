@@ -16,7 +16,7 @@ Input: numRows = 1
 Output: [[1]]
 
 '''
-class Solution(object):
+class Solution_1(object):
     def generate(self, numRows):
         """
         :type numRows: int
@@ -36,4 +36,26 @@ class Solution(object):
                 row.append(temp[j] + temp[j+1])
             result.append(row)
             
+        return result
+
+class Solution_2(object):
+    def generate(self, numRows):
+        """
+        :type numRows: int
+        :rtype: List[List[int]]
+        """
+        if numRows == 0:
+            return []
+        if numRows == 1:
+            return [[1]]
+        
+        result = [[1]]
+        
+        for i in range(2, numRows+1):
+            temp = [1]
+            for j in range(1,i-1):
+                temp.append(result[-1][j] + result[-1][j-1])
+            temp.append(1)
+            result.append(temp)
+                
         return result
