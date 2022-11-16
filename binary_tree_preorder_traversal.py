@@ -99,3 +99,14 @@ class Solution_3(object):
                 node = q.pop()
 
         return res
+
+class Solution_4(object):
+    def preorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if not root:
+            return []
+        
+        return [root.val] + self.preorderTraversal(root.left) + self.preorderTraversal(root.right)
