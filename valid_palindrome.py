@@ -68,3 +68,14 @@ class Solution_2(object):
         
     def is_alpha(self, char):
         return (ord('A') <= ord(char) <= ord('Z') or ord('a') <= ord(char) <= ord('z') or ord('0') <= ord(char) <= ord('9'))
+
+
+class Solution_3(object):
+    def isPalindrome(self, s):
+        """
+        :type s: str
+        :rtype: bool
+        """
+        s = re.sub("[^a-z|^0-9]", "", s.lower())
+        
+        return s == s[::-1]
