@@ -25,7 +25,7 @@ Output: [1]
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
+class Solution_1(object):
     def preorderTraversal(self, root):
         """
         :type root: TreeNode
@@ -42,4 +42,31 @@ class Solution(object):
             inorder(root.right)
             
         inorder(root)
+        return res
+
+class Solution_2(object):
+    def preorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if not root:
+            return None
+        
+        res = []
+        q = deque()
+        q.append(root)
+        
+        while q:
+            node = q.pop()
+            
+            res.append(node.val)
+            
+            if node.right:
+                q.append(node.right)
+            
+            if node.left:
+                q.append(node.left)
+            
+                
         return res
