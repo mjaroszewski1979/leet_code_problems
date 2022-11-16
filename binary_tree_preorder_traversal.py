@@ -43,6 +43,7 @@ class Solution_1(object):
             
         inorder(root)
         return res
+from collections import deque
 
 class Solution_2(object):
     def preorderTraversal(self, root):
@@ -68,5 +69,33 @@ class Solution_2(object):
             if node.left:
                 q.append(node.left)
             
+        return res
+
+class Solution_3(object):
+    def preorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if not root:
+            return None
+        
+        res = []
+        q = deque()
+        q.append(root)
+        
+        node = root
+        
+        while q:
+            if node:
+                res.append(node.val)
+            
+                if node.right:
+                    q.append(node.right)
                 
+                node = node.left
+            
+            else:
+                node = q.pop()
+
         return res
