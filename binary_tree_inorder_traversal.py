@@ -23,7 +23,7 @@ Output: [1]
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
+class Solution_1(object):
     def inorderTraversal(self, root):
         """
         :type root: TreeNode
@@ -42,7 +42,7 @@ class Solution(object):
         return res
 
 from collections import deque
-class Solution(object):
+class Solution_2(object):
     def inorderTraversal(self, root):
         """
         :type root: TreeNode
@@ -61,4 +61,37 @@ class Solution(object):
             result.append(current.val)
             current = current.right
             
+        return result
+
+from collections import deque
+class Solution_3(object):
+    def inorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        if not root:
+            return []
+        
+        result = []
+        stack = deque()
+        stack.append(root)
+        current = root
+        
+        while current.left != None:
+            stack.append(current.left)
+            current = current.left 
+            
+        while stack:
+            current = stack.pop()
+            result.append(current.val)
+            
+            if current.right != None:
+                stack.append(current.right)
+                current = current.right
+                
+                while current.left != None:
+                    stack.append(current.left)
+                    current = current.left 
+                    
         return result
