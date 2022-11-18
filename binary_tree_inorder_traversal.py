@@ -40,3 +40,25 @@ class Solution(object):
             
         inorder(root)
         return res
+
+from collections import deque
+class Solution(object):
+    def inorderTraversal(self, root):
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
+        result = []
+        
+        stack = deque()
+        current = root
+        
+        while stack or current:
+            while current:
+                stack.append(current)
+                current = current.left
+            current = stack.pop()
+            result.append(current.val)
+            current = current.right
+            
+        return result
