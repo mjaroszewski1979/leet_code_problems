@@ -25,7 +25,7 @@ class ListNode(object):
         self.val = val
         self.next = next
         
-class Solution(object):
+class Solution_1(object):
     def removeElements(self, head, val):
         """
         :type head: ListNode
@@ -49,3 +49,28 @@ class Solution(object):
             right = temp
 
         return dummy.next
+
+class Solution_2(object):
+    def removeElements(self, head, val):
+        """
+        :type head: ListNode
+        :type val: int
+        :rtype: ListNode
+        """
+        if not head:
+            return head
+        
+        prev = None
+        cur = head
+        
+        while cur:
+            if cur.val == val:
+                if prev == None:
+                    head = cur.next
+                else:
+                    prev.next = cur.next
+            else:
+                prev = cur
+            cur = cur.next
+            
+        return head
