@@ -74,3 +74,21 @@ class Solution_2(object):
             cur = cur.next
             
         return head
+
+class Solution_3(object):
+    def removeElements(self, head, val):
+        """
+        :type head: ListNode
+        :type val: int
+        :rtype: ListNode
+        """
+        if not head:
+            return head
+        
+        node = self.removeElements(head.next, val)
+        
+        if head.val == val:
+            return node
+        head.next = node
+        
+        return head
