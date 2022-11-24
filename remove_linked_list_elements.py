@@ -92,3 +92,25 @@ class Solution_3(object):
         head.next = node
         
         return head
+
+class Solution(object):
+    def removeElements(self, head, val):
+        """
+        :type head: ListNode
+        :type val: int
+        :rtype: ListNode
+        """
+        dummy = ListNode(0, head)
+        
+        prev = dummy
+        curr = head
+        
+        while curr:
+            
+            if curr.val == val:
+                prev.next = curr.next
+            else:
+                prev = curr
+            curr = curr.next
+                
+        return dummy.next
